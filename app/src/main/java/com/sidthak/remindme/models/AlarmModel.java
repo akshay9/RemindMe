@@ -4,6 +4,7 @@ import java.util.Date;
 
 public class AlarmModel {
     Date date;
+    String title;
     boolean activated;
-    
+
 }
