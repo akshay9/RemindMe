@@ -16,7 +16,8 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <activity android:name=".activities.SetAlarmActivity"></activity>
+        <activity android:name=".activities.SetAlarmActivity" />
+        <activity android:name=".activities.activity_wishlist_form"></activity>
     </application>
 
 </manifest>
