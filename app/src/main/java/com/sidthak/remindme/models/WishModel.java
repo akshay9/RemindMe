@@ -12,6 +12,7 @@ public class WishModel {
     String creator;
 
     public WishModel() {
+        db = FirebaseFirestore.getInstance();
     }
 
     public WishModel(String title, String description, String creator) {

@@ -1,6 +1,7 @@
 package com.sidthak.remindme;
 
 import android.app.ActionBar;
+import android.content.Intent;
 import android.support.design.widget.TabLayout;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
@@ -14,7 +15,9 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ListView;
 
+import com.sidthak.remindme.activities.LoginActivity;
 import com.sidthak.remindme.adapters.AlarmsAdapter;
+import com.sidthak.remindme.fragments.AlarmsFragment;
 import com.sidthak.remindme.fragments.Wishlist;
 import com.sidthak.remindme.models.AlarmModel;
 
@@ -31,8 +34,9 @@ public class MainActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
         setSupportActionBar((Toolbar) findViewById(R.id.toolbar));
-
-        TabLayout tablayout = (TabLayout) findViewById(R.id.tablayout);
+        Intent i=new Intent(this, LoginActivity.class);
+        startActivity(i);
+        TabLayout tablayout = findViewById(R.id.tablayout);
         tablayout.setupWithViewPager(mViewPager);
 
 
@@ -90,33 +94,6 @@ public class MainActivity extends AppCompatActivity {
                 default:
                     return "kya pata";
             }
-        }
-    }
-
-    // Instances of this class are fragments representing a single
-// object in our collection.
-    public static class AlarmsFragment extends Fragment {
-        public static final String ARG_OBJECT = "object";
-
-        @Override
-        public View onCreateView(LayoutInflater inflater,
-                                 ViewGroup container, Bundle savedInstanceState) {
-            // The last two arguments ensure LayoutParams are inflated
-            // properly.
-            View rootView = inflater.inflate(
-                    R.layout.fragment_alarms, container, false);
-            Bundle args = getArguments();
-            ListView mListView = rootView.findViewById(R.id.lv_alarms);
-
-            ArrayList<AlarmModel> alarms = new ArrayList<>();
-
-            alarms.add(new AlarmModel());
-            alarms.add(new AlarmModel());
-
-            AlarmsAdapter adapter=new AlarmsAdapter(getActivity(), alarms);
-            mListView.setAdapter(adapter);
-
-            return rootView;
         }
     }
 }
