@@ -4,7 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context="com.sidthak.remindme.activities.activity_wishlist_form">
+    tools:context="com.sidthak.remindme.activities.WishListFormActivity">
     <android.support.v7.widget.Toolbar
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
@@ -17,7 +17,7 @@
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="Remind Me"
+            android:text="Make a wish"
             android:textSize="20sp"/>
 
 
@@ -28,14 +28,23 @@
         android:layout_height="70dp"
         android:layout_below="@+id/toolbar"
         android:layout_marginLeft="10dp"
-        android:text="Enter Wish Name" android:inputType="text" />
+        android:hint="Enter Wish Name" android:inputType="text" />
     <EditText
         android:id="@+id/wish_description"
         android:layout_width="400dp"
-        android:layout_height="70dp"
+        android:layout_height="150dp"
         android:layout_below="@+id/wish_name"
         android:layout_marginLeft="10dp"
-        android:text="Enter Wish Description" android:inputType="text" />
+        android:hint="Enter Wish Description" android:inputType="text" />
+
+    <Button
+        android:id="@+id/submit_wish"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/wish_description"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="50dp"
+        android:text="Submit" />
 
 
 </RelativeLayout>

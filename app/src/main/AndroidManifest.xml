@@ -17,7 +17,7 @@
             </intent-filter>
         </activity>
         <activity android:name=".activities.SetAlarmActivity" />
-        <activity android:name=".activities.activity_wishlist_form"></activity>
+        <activity android:name=".activities.WishListFormActivity"></activity>
     </application>
 
 </manifest>
