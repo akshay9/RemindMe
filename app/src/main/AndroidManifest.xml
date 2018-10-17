@@ -18,7 +18,8 @@
         </activity>
         <activity android:name=".activities.SetAlarmActivity" />
         <activity android:name=".activities.WishListFormActivity" />
-        <activity android:name=".activities.LoginActivity"></activity>
+        <activity android:name=".activities.LoginActivity" />
+        <activity android:name=".activities.RegisterActivity"></activity>
     </application>
 
 </manifest>

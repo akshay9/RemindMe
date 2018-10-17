@@ -1,7 +1,9 @@
 package com.sidthak.remindme;
 
 import android.app.ActionBar;
+import android.content.Context;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.support.design.widget.TabLayout;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
@@ -34,8 +36,16 @@ public class MainActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
         setSupportActionBar((Toolbar) findViewById(R.id.toolbar));
-        Intent i=new Intent(this, LoginActivity.class);
-        startActivity(i);
+
+        SharedPreferences sharedPref = getSharedPreferences(
+                "remindMe", Context.MODE_PRIVATE);
+
+        if(!sharedPref.contains("username")){
+            Intent i=new Intent(this, LoginActivity.class);
+            startActivity(i);
+            finish();
+        }
+
         TabLayout tablayout = findViewById(R.id.tablayout);
         tablayout.setupWithViewPager(mViewPager);
 
