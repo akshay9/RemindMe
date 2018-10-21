@@ -55,9 +55,14 @@ public class LoginActivity extends AppCompatActivity {
                     public void onComplete(@NonNull Task<QuerySnapshot> task) {
                         if (task.isSuccessful()) {
                             if(task.getResult().size() > 0){
+                                DocumentSnapshot doc = task.getResult().getDocuments().get(0);
+                                UserModel user = doc.toObject(UserModel.class);
+
                                 sharedPref.edit().putString("username", username.getText().toString()).commit();
+
                                 Intent i=new Intent(LoginActivity.this, MainActivity.class);
                                 startActivity(i);
+
                                 LoginActivity.this.finish();
                             } else {
                                 //Failed

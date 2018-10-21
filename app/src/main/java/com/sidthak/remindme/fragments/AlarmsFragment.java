@@ -1,6 +1,8 @@
 package com.sidthak.remindme.fragments;
 
+import android.content.Context;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.design.widget.FloatingActionButton;
@@ -29,6 +31,7 @@ public class AlarmsFragment extends Fragment {
     FirebaseFirestore db;
     ArrayList<AlarmModel> alarms;
     AlarmsAdapter adapter;
+    SharedPreferences sharedPref;
 
     @Override
     public View onCreateView(LayoutInflater inflater,
@@ -40,6 +43,9 @@ public class AlarmsFragment extends Fragment {
         Bundle args = getArguments();
         ListView mListView = rootView.findViewById(R.id.lv_alarms);
         FloatingActionButton mAddButton = rootView.findViewById(R.id.fab);
+
+        sharedPref = getActivity().getSharedPreferences(
+                "remindMe", Context.MODE_PRIVATE);
 
         mAddButton.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -69,7 +75,7 @@ public class AlarmsFragment extends Fragment {
 
     private void getAlarms() {
         CollectionReference colRef = db.collection("alarms");
-        colRef.whereEqualTo("owner", "akshay")
+        colRef.whereEqualTo("owner", sharedPref.getString("username", "akshay"))
                 .get().addOnCompleteListener(new OnCompleteListener<QuerySnapshot>() {
             @Override
             public void onComplete(@NonNull Task<QuerySnapshot> task) {

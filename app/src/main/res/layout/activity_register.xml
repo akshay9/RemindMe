@@ -54,7 +54,7 @@
         android:layout_below="@+id/password"
         android:gravity="center"
         android:hint="Enter Age"
-        android:inputType="text"
+        android:inputType="numberSigned"
         android:textColor="@color/colorPrimaryDark"
         android:textColorHint="@color/colorPrimaryDark" />
 

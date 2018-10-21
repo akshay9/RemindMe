@@ -19,7 +19,8 @@
         <activity android:name=".activities.SetAlarmActivity" />
         <activity android:name=".activities.WishListFormActivity" />
         <activity android:name=".activities.LoginActivity" />
-        <activity android:name=".activities.RegisterActivity"></activity>
+        <activity android:name=".activities.RegisterActivity" />
+        <activity android:name=".activities.ProfileActivity"></activity>
     </application>
 
 </manifest>

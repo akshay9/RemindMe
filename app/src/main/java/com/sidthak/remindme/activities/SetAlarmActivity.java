@@ -1,6 +1,8 @@
 package com.sidthak.remindme.activities;
 
+import android.content.Context;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.util.Log;
@@ -31,11 +33,15 @@ public class SetAlarmActivity extends AppCompatActivity {
     Button mSubmit, mCancel;
     List<Boolean> days;
     boolean repeat = false;
+    SharedPreferences sharedPref;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_set_alarm);
+
+        sharedPref = getSharedPreferences(
+                "remindMe", Context.MODE_PRIVATE);
 
         days= new ArrayList<>(8);
         days.add(false);
@@ -68,7 +74,7 @@ public class SetAlarmActivity extends AppCompatActivity {
         mSubmit.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                AlarmModel alarm = new AlarmModel("akshay",
+                AlarmModel alarm = new AlarmModel(sharedPref.getString("username", "akshay"),
                         alarmName.getText().toString(),
                         alarmDescription.getText().toString(),
                         mTime.getCurrentHour(),

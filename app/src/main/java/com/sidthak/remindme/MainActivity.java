@@ -13,11 +13,14 @@ import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.support.v7.widget.Toolbar;
 import android.view.LayoutInflater;
+import android.view.Menu;
+import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ListView;
 
 import com.sidthak.remindme.activities.LoginActivity;
+import com.sidthak.remindme.activities.ProfileActivity;
 import com.sidthak.remindme.adapters.AlarmsAdapter;
 import com.sidthak.remindme.fragments.AlarmsFragment;
 import com.sidthak.remindme.fragments.Wishlist;
@@ -35,9 +38,11 @@ public class MainActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
-        setSupportActionBar((Toolbar) findViewById(R.id.toolbar));
 
-        SharedPreferences sharedPref = getSharedPreferences(
+        Toolbar mToolbar = findViewById(R.id.toolbar);
+        setSupportActionBar(mToolbar);
+
+        final SharedPreferences sharedPref = getSharedPreferences(
                 "remindMe", Context.MODE_PRIVATE);
 
         if(!sharedPref.contains("username")){
@@ -50,6 +55,25 @@ public class MainActivity extends AppCompatActivity {
         tablayout.setupWithViewPager(mViewPager);
 
 
+        mToolbar.setOnMenuItemClickListener(new Toolbar.OnMenuItemClickListener() {
+
+            @Override
+            public boolean onMenuItemClick(MenuItem item) {
+
+                if(item.getItemId()==R.id.menu_main_profile)
+                {
+                    Intent i = new Intent(MainActivity.this, ProfileActivity.class);
+                    startActivity(i);
+                } else if (item.getItemId()==R.id.menu_main_logout) {
+                    sharedPref.edit().clear().apply();
+                    Intent i = new Intent(MainActivity.this, LoginActivity.class);
+                    startActivity(i);
+
+                }
+
+                return false;
+            }
+        });
 
         // ViewPager and its adapters use support library
         // fragments, so use getSupportFragmentManager.
@@ -106,6 +130,15 @@ public class MainActivity extends AppCompatActivity {
             }
         }
     }
+
+    @Override
+    public boolean onCreateOptionsMenu(Menu menu) {
+        // Inflate the menu; this adds items to the action bar if it is present.
+        getMenuInflater().inflate(R.menu.main_menu, menu);
+        return true;
+    }
+
+
 }
 
 
